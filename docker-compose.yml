@@ -1,0 +1,40 @@
+version: "2.3"
+
+services:
+
+  api:
+    command:  ./myapp.pl daemon -l http://*:8080
+    build:
+      context: ./api/
+    environment:
+      PERL5LIB: /app/lib
+      DATABASE_URL: postgresql://postgres:password@postgres/perl-graphql-example
+    depends_on:
+      - postgres
+    volumes:
+      - "$PWD/api:/app"
+    ports:
+      - 8080:8080
+
+  sqitch:
+    image: sqitch/sqitch
+    command: deploy
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - "$PWD/db:/repo"
+
+  postgres:
+    image: postgres:13.3
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      # postgres server/image config vars
+      PGDATA: /pgdata # required for the postgres fixture images to save data
+      POSTGRES_DB: perl-graphql-example
+      POSTGRES_PASSWORD: password
+      # matching psql client vars - used for running with psql

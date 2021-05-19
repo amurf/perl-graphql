@@ -1,4 +1,10 @@
 requires 'Mojolicious::Lite';
+requires 'DBD::Pg';
+requires 'Function::Parameters';
+requires 'Scope::Guard';
+requires 'DBIx::Class';
+requires 'URI::db';
+requires 'URI::db';
 requires 'GraphQL' => '0.40'; # subs
 requires 'Mojolicious::Plugin::GraphQL' => '0.16'; # keepalive
 requires 'GraphQL::Plugin::Convert::MojoPubSub' => '0.01';

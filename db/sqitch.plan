@@ -1,0 +1,7 @@
+%syntax-version=1.0.0
+%project=graphql-perl-example
+
+create-address-table 2021-05-19T05:10:07Z sqitch <sqitch@95abda301449> # Create address table
+create-surveyweek-table 2021-05-19T05:11:51Z sqitch <sqitch@ea71560ac607> # create survey week table
+create-household-table 2021-05-19T05:07:28Z sqitch <sqitch@01e1345bfc3a> # create household table
+populate-with-random-junk 2021-05-19T05:12:30Z sqitch <sqitch@111b251abb72> # heh
